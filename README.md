@@ -1,3 +1,6 @@
+# Using resources from this project:
+[docker-laravel-appengine](https://github.com/ibrunotome/docker-laravel-appengine)
+
 # Laravel dockerized with official Google App Engine flexible php environment + swoole (ready for production).
 
 [![Build Status](https://semaphoreci.com/api/v1/ibrunotome/docker-laravel-appengine/branches/master/badge.svg)](https://semaphoreci.com/ibrunotome/docker-laravel-appengine)
