@@ -1,0 +1,40 @@
+version: "3.6"
+services:
+  app:
+    #network_mode: bridge
+    image: passiontechltd/laravel-swoole-docker
+    container_name: default-api-app
+    ports:
+      - 80:8080
+    environment:
+      - DOCUMENT_ROOT=/app/public
+      - SKIP_LOCKDOWN_DOCUMENT_ROOT=true
+      - OPCACHE_SAVE_COMMENTS=1
+      - OPCACHE_VALIDATE_TIMESTAMPS=1
+    volumes:
+      - ./source:/app
+      - ./php.ini:/opt/php72/lib/php.ini
+    depends_on:
+      - redis
+    networks:
+      - app-tier
+
+  redis:
+    #network_mode: bridge
+    image: launcher.gcr.io/google/redis4
+    container_name: default-api-redis
+    volumes:
+      - default-redis:/data
+    ports:
+      - 6379:6379
+    networks:
+      - app-tier
+
+volumes:
+  default-redis:
+    driver: local
+
+networks:
+  app-tier:
+    external:
+      name: mysql_network

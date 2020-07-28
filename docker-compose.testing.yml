@@ -1,0 +1,35 @@
+version: '3.6'
+services:
+  app-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.testing
+    container_name: testing-api-app
+    ports:
+      - 80:8080
+    environment:
+      - DOCUMENT_ROOT=/app/public
+      - SKIP_LOCKDOWN_DOCUMENT_ROOT=true
+      - OPCACHE_SAVE_COMMENTS=1
+      - OPCACHE_VALIDATE_TIMESTAMPS=1
+    volumes:
+      - .:/app
+    depends_on:
+      - redis-tests
+
+  redis-tests:
+    image: launcher.gcr.io/google/redis4
+    container_name: testing-api-redis-tests
+    volumes:
+      - testing-redis-tests:/data
+    ports:
+      - 6378:6379
+
+networks:
+  default:
+    name: testing-api_default
+volumes:
+  testing-pgsql-tests:
+    driver: local
+  testing-redis-tests:
+    driver: local
