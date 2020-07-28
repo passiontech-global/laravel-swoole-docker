@@ -2,7 +2,7 @@ version: "3.6"
 services:
   app:
     #network_mode: bridge
-    image: passiontechltd/laravel-swoole-docker
+    image: passiontechltd/laravel-swoole
     container_name: default-api-app
     ports:
       - 80:8080
