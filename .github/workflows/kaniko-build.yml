@@ -14,25 +14,25 @@ on:
 jobs:
   # Run tests.
   # See also https://docs.docker.com/docker-hub/builds/automated-testing/
-  test:
-    runs-on: ubuntu-latest
+#   test:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
+#     steps:
+#       - uses: actions/checkout@v2
 
-      - name: Run tests
-        run: |
-          if [ -f docker-compose.test.yml ]; then
-            docker-compose --file docker-compose.test.yml build
-            docker-compose --file docker-compose.test.yml run sut
-          else
-            docker build . --file Dockerfile
-          fi
+#       - name: Run tests
+#         run: |
+#           if [ -f docker-compose.test.yml ]; then
+#             docker-compose --file docker-compose.test.yml build
+#             docker-compose --file docker-compose.test.yml run sut
+#           else
+#             docker build . --file Dockerfile
+#           fi
           
   # This workflow contains a single job called "build"
   push:
     # Ensure test job passes before pushing image.
-    needs: test
+#     needs: test
     
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
